@@ -6,3 +6,5 @@ CLIENT: UBUNTU 14.10 ON VAGRANT <br />
 
 
 ![alt tag](https://github.com/surajn222/Ansible-install-apache/blob/master/Installation.png)
+
+NEXT: LAMP stack with Ansible. AWS with Ansible
