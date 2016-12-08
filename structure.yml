@@ -8,20 +8,37 @@
     apt: name=apache2 state=absent
     notify:
     - Install apache
+
+#  - name: Install Apache
+#    apt:
+#       name: apache2
+#       state: installed
+
+  - name: Create directory
+    file:
+     path: /etc/some_directory 
+     state: directory 
+     mode: 0755
+     recurse: true
  
  #- name: ensure apache is running (and enable it at boot)
  #   service: name=apache2 state=started enabled=yes
 
   handlers:
     - name: Install apache
-      apt: name=apache2 state=installed
+      apt:
+        name: apache2 
+        state: latest
       notify:
-      - Restart apache
+        - Restart apache
     - name: Restart apache
       service: name=apache2 state=restarted enabled=yes
-
-
-
-
-
-
+      notify: 
+      - Change default page
+    - name: Change default page
+      copy:
+        dest: /var/www/html/index.html
+        src: /home/vagrant/ex1/templates/index.html
+        owner: root
+        group: root
+        mode: 0644
